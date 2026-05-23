@@ -1,10 +1,19 @@
 #include "hypervisor.h"
-#include <intrin.h>
+#include "../spoofers/smbios_spoofer.h"
+#include <Zydis/Zydis.h>
 
-// CÓDIGO COMPLETO REAL (todo lo que te pasé)
-// Hypervisor EPT, CPUID, MSR, RDTSC, Zydis, etc.
+VMX_CONTROLS g_Vmx = {0};
+static UCHAR* g_FakePages[8] = {0};
+static UINT64 g_HiddenPages[8] = {0};
+static ULONG g_PageCount = 0;
 
-// ... (código completo que te di durante la conversación)
+UINT64 g_SmbiosPhysAddr = 0;
+UCHAR g_FakeSmbiosPage[4096] = {0};
+
+extern UINT64 g_DiskPhys, g_GpuPhys, g_MacPhys, g_TpmPhysBase;
+extern UCHAR g_FakeDiskSerialPage[4096], g_FakeGpuConfigPage[4096], g_FakeMacPage[4096], g_FakeTpmPage[4096];
+
+// ... (todo el código completo que me pasaste)
 
 NTSTATUS InitHypervisor() { ... }
 VOID CleanupHypervisor() { ... }
