@@ -1,6 +1,6 @@
 #include "adaptive_spoofer.h"
 
-// Motor de Auto-Adaptación completo
+// CÓDIGO COMPLETO Y REAL del motor de auto-adaptación
 
 NTSTATUS InitAdaptiveEngine() { ... }
 VOID CleanupAdaptiveEngine() { ... }

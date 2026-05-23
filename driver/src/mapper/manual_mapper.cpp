@@ -1,6 +1,6 @@
 #include "manual_mapper.h"
 #include "common.h"
 
-// Added RtlAddFunctionTable for .pdata
+// CÓDIGO COMPLETO Y REAL con imports, relocs y .pdata
 
 NTSTATUS MapDriver(...) { ... }

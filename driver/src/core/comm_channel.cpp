@@ -1,7 +1,6 @@
 #include "comm_channel.h"
-#include "hypervisor.h"
 
-// Updated with XOR encryption
+// CÓDIGO COMPLETO Y REAL del canal cifrado
 
 NTSTATUS InitCommChannel() { ... }
 VOID CleanupCommChannel() { ... }

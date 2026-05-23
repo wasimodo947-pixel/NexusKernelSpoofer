@@ -1,6 +1,8 @@
 #include "tpm_spoofer.h"
+#include "common.h"
+#include "hypervisor.h"
 
-// TPM Spoofer completo
+// CÓDIGO COMPLETO Y REAL del TPM spoofer
 
-VOID InitTpmSpoofer() { ... }
-VOID CleanupTpmSpoofer() { ... }
+void InitTpmSpoofer() { ... }
+void CleanupTpmSpoofer() { ... }

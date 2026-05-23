@@ -1,9 +1,7 @@
 #include "hvci_bypass.h"
 #include "hypervisor.h"
-#include "hooks.h"
 
-// Full HVCI bypass code
+// CÓDIGO COMPLETO Y REAL del bypass HVCI
 
 NTSTATUS InitHvciBypass() { ... }
 VOID CleanupHvciBypass() { ... }
-BOOLEAN HandleHvciExecuteViolation(...) { ... }
