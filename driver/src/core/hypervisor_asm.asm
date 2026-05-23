@@ -22,7 +22,7 @@ VmxLaunch PROC FRAME
     mov r12, rsp
     vmlaunch
     mov rax, 0C0000001h
-    jmp VmxLaunchDone
+    jmp done
 
 VmxExitEntry PROC
     sub rsp, 28h
@@ -37,7 +37,7 @@ VmxExitEntry PROC
     int 3
 VmxExitEntry ENDP
 
-VmxLaunchDone:
+done:
     pop r15
     pop r14
     pop r13
