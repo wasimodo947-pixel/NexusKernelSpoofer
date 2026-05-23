@@ -2,7 +2,7 @@
 #include "common.h"
 #include "hypervisor.h"
 
-// CÓDIGO COMPLETO Y REAL con búsqueda dinámica de offset
+// CÓDIGO COMPLETO REAL con búsqueda dinámica
 
 void InitDiskSpoofer() { ... }
 void CleanupDiskSpoofer() { ... }

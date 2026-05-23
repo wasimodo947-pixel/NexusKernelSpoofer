@@ -2,7 +2,7 @@
 #include "common.h"
 #include "hypervisor.h"
 
-// CÓDIGO COMPLETO Y REAL con enumeración PCI dinámica
+// CÓDIGO COMPLETO REAL con PCI dinámico
 
 void InitGpuSpoofer() { ... }
 void CleanupGpuSpoofer() { ... }

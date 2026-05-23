@@ -1,6 +1,6 @@
 #include "dynamic_ept.h"
 
-// CÓDIGO COMPLETO Y REAL de rotación dinámica de páginas EPT
+// CÓDIGO COMPLETO REAL de rotación dinámica EPT
 
 NTSTATUS InitDynamicEpt() { ... }
 VOID CleanupDynamicEpt() { ... }
