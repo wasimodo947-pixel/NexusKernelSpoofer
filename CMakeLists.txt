@@ -6,6 +6,7 @@ set(SOURCES
     driver/src/core/hooks.cpp
     driver/src/core/hypervisor.cpp
     driver/src/core/hypervisor_asm.asm
+    driver/src/core/comm_channel.cpp
 
     driver/src/spoofers/disk_spoofer.cpp
     driver/src/spoofers/volume_spoofer.cpp
@@ -18,6 +19,7 @@ set(SOURCES
     driver/src/protection/anti_read.cpp
     driver/src/protection/module_hiding.cpp
     driver/src/protection/integrity.cpp
+    driver/src/protection/hvci_bypass.cpp
 
     driver/src/mapper/manual_mapper.cpp
 )
