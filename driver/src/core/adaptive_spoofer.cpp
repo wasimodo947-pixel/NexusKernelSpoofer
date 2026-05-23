@@ -1,9 +1,6 @@
 #include "adaptive_spoofer.h"
-#include "hypervisor.h"
-#include "comm_channel.h"
 
-// Full Adaptive Engine code
+// Motor de Auto-Adaptación completo
 
 NTSTATUS InitAdaptiveEngine() { ... }
 VOID CleanupAdaptiveEngine() { ... }
-VOID AdaptiveEngineTrigger() { ... }
