@@ -4,6 +4,8 @@ project(NexusKernelSpoofer)
 set(SOURCES
     driver/src/core/main.cpp
     driver/src/core/hooks.cpp
+    driver/src/core/hypervisor.cpp
+    driver/src/core/hypervisor_asm.asm
 
     driver/src/spoofers/disk_spoofer.cpp
     driver/src/spoofers/volume_spoofer.cpp
@@ -21,4 +23,4 @@ set(SOURCES
 )
 
 add_driver(NexusKernelSpoofer ${SOURCES})
-target_link_libraries(NexusKernelSpoofer ntoskrnl)
+target_link_libraries(NexusKernelSpoofer ntoskrnl hal)
