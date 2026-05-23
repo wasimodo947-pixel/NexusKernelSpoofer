@@ -1,15 +1,12 @@
+#include "disk_spoofer.h"
 #include "common.h"
 #include "hooks.h"
-#include "disk_spoofer.h"
 
-static HOOK_INFO g_DiskHook = { 0 };
 static PDRIVER_OBJECT g_DiskDriver = NULL;
 static PDRIVER_DISPATCH g_OriginalDiskDispatch = NULL;
 
-static NTSTATUS HookedDiskDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp) {
-    if (!g_SpoofData.Enabled)
-        return g_OriginalDiskDispatch(DeviceObject, Irp);
-
+NTSTATUS HookedDiskDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp) {
+    if (!g_SpoofData.Enabled) return g_OriginalDiskDispatch(DeviceObject, Irp);
     PIO_STACK_LOCATION stack = IoGetCurrentIrpStackLocation(Irp);
     if (stack->MajorFunction == IRP_MJ_DEVICE_CONTROL) {
         ULONG code = stack->Parameters.DeviceIoControl.IoControlCode;
@@ -38,7 +35,6 @@ void InitDiskSpoofer() {
     NTSTATUS status = ObReferenceObjectByName(&name, OBJ_CASE_INSENSITIVE, NULL, 0,
         *IoDriverObjectType, KernelMode, NULL, (PVOID*)&driver);
     if (!NT_SUCCESS(status)) return;
-
     g_DiskDriver = driver;
     g_OriginalDiskDispatch = driver->MajorFunction[IRP_MJ_DEVICE_CONTROL];
     InstallHookX64(g_OriginalDiskDispatch, HookedDiskDeviceControl, &g_DiskHook);

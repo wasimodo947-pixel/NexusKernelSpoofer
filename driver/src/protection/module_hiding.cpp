@@ -1,32 +1,13 @@
+#include "module_hiding.h"
 #include "common.h"
 #include "hooks.h"
-#include "module_hiding.h"
 
 typedef NTSTATUS (*NTQUERYSYSTEMINFORMATION)(SYSTEM_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-NTQUERYSYSTEMINFORMATION g_OriginalNtQuerySystemInformation = NULL;
-HOOK_INFO g_ModuleHideHook = {0};
+static NTQUERYSYSTEMINFORMATION g_Original = NULL;
 
-typedef struct _SYSTEM_MODULE_ENTRY {
-    PVOID  Section;
-    PVOID  MappedBase;
-    PVOID  ImageBase;
-    ULONG  ImageSize;
-    ULONG  Flags;
-    USHORT LoadOrderIndex;
-    USHORT InitOrderIndex;
-    USHORT LoadCount;
-    USHORT OffsetToFileName;
-    UCHAR  FullPathName[256];
-} SYSTEM_MODULE_ENTRY;
-
-typedef struct _SYSTEM_MODULE_INFORMATION {
-    ULONG ModulesCount;
-    SYSTEM_MODULE_ENTRY Modules[1];
-} SYSTEM_MODULE_INFORMATION;
-
-NTSTATUS HookedNtQuerySystemInformation(SYSTEM_INFORMATION_CLASS SystemInformationClass,
-    PVOID SystemInformation, ULONG SystemInformationLength, PULONG ReturnLength) {
-    NTSTATUS status = g_OriginalNtQuerySystemInformation(SystemInformationClass, SystemInformation, SystemInformationLength, ReturnLength);
+static NTSTATUS Hooked(SYSTEM_INFORMATION_CLASS SystemInformationClass,
+                       PVOID SystemInformation, ULONG SystemInformationLength, PULONG ReturnLength) {
+    NTSTATUS status = g_Original(SystemInformationClass, SystemInformation, SystemInformationLength, ReturnLength);
     if (!g_SpoofData.Enabled || !NT_SUCCESS(status) || SystemInformationClass != 0xB)
         return status;
 
@@ -49,9 +30,9 @@ NTSTATUS HookedNtQuerySystemInformation(SYSTEM_INFORMATION_CLASS SystemInformati
 void InitModuleHiding() {
     UNICODE_STRING name;
     RtlInitUnicodeString(&name, L"NtQuerySystemInformation");
-    g_OriginalNtQuerySystemInformation = (NTQUERYSYSTEMINFORMATION)MmGetSystemRoutineAddress(&name);
-    if (g_OriginalNtQuerySystemInformation)
-        InstallHookX64(g_OriginalNtQuerySystemInformation, HookedNtQuerySystemInformation, &g_ModuleHideHook);
+    g_Original = (NTQUERYSYSTEMINFORMATION)MmGetSystemRoutineAddress(&name);
+    if (g_Original)
+        InstallHookX64(g_Original, Hooked, &g_ModuleHideHook);
 }
 
 void CleanupModuleHiding() {

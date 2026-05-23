@@ -1,10 +1,9 @@
+#include "registry_spoofer.h"
 #include "common.h"
 #include "hooks.h"
-#include "registry_spoofer.h"
 
 typedef NTSTATUS (*NTQUERYVALUEKEY)(HANDLE, PUNICODE_STRING, KEY_VALUE_INFORMATION_CLASS, PVOID, ULONG, PULONG);
 static NTQUERYVALUEKEY g_Original = NULL;
-static HOOK_INFO g_Hook = { 0 };
 
 static NTSTATUS Hooked(HANDLE KeyHandle, PUNICODE_STRING ValueName,
                        KEY_VALUE_INFORMATION_CLASS KeyValueInformationClass,
@@ -42,9 +41,9 @@ void InitRegistrySpoofer() {
     RtlInitUnicodeString(&name, L"NtQueryValueKey");
     g_Original = (NTQUERYVALUEKEY)MmGetSystemRoutineAddress(&name);
     if (g_Original)
-        InstallHookX64(g_Original, Hooked, &g_Hook);
+        InstallHookX64(g_Original, Hooked, &g_RegHook);
 }
 
 void CleanupRegistrySpoofer() {
-    RemoveHookX64(&g_Hook);
+    RemoveHookX64(&g_RegHook);
 }

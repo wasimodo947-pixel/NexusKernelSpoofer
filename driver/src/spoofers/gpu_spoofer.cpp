@@ -1,17 +1,15 @@
+#include "gpu_spoofer.h"
 #include "common.h"
 #include "hooks.h"
-#include "gpu_spoofer.h"
 
-typedef NTSTATUS (*DXGKGETDEVICESTATE)(PVOID DeviceContext, PVOID State, ULONG StateSize);
+typedef NTSTATUS (*DXGKGETDEVICESTATE)(PVOID, PVOID, ULONG);
 static DXGKGETDEVICESTATE g_OriginalDxgkGetDeviceState = NULL;
-static HOOK_INFO g_GpuHook = {0};
 
-NTSTATUS HookedDxgkGetDeviceState(PVOID DeviceContext, PVOID State, ULONG StateSize) {
+static NTSTATUS HookedDxgkGetDeviceState(PVOID DeviceContext, PVOID State, ULONG StateSize) {
     NTSTATUS status = g_OriginalDxgkGetDeviceState(DeviceContext, State, StateSize);
     if (g_SpoofData.Enabled && NT_SUCCESS(status) && State && StateSize >= 8) {
-        PUCHAR buffer = (PUCHAR)State;
-        *(ULONG*)(buffer) = 0x10DE;
-        *(ULONG*)(buffer + 4) = 0x1B06;
+        *(ULONG*)State = 0x10DE;
+        *(ULONG*)((PUCHAR)State + 4) = 0x1B06;
     }
     return status;
 }
@@ -20,8 +18,9 @@ static PVOID FindDxgkGetDeviceState() {
     UNICODE_STRING dxgName;
     RtlInitUnicodeString(&dxgName, L"\\Driver\\dxgkrnl");
     PDRIVER_OBJECT dxgDrv = NULL;
-    ObReferenceObjectByName(&dxgName, OBJ_CASE_INSENSITIVE, NULL, 0, *IoDriverObjectType, KernelMode, NULL, (PVOID*)&dxgDrv);
-    if (!dxgDrv) return NULL;
+    NTSTATUS st = ObReferenceObjectByName(&dxgName, OBJ_CASE_INSENSITIVE, NULL, 0,
+        *IoDriverObjectType, KernelMode, NULL, (PVOID*)&dxgDrv);
+    if (!NT_SUCCESS(st)) return NULL;
     PUCHAR base = (PUCHAR)dxgDrv->DriverStart;
     ULONG size = dxgDrv->DriverSize;
     ObDereferenceObject(dxgDrv);
