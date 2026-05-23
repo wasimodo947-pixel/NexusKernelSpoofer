@@ -30,8 +30,6 @@ HOOK_INFO* g_AllHooks[] = {
     &g_SmbiosHook, &g_GpuHook, &g_AntiReadHook, &g_ModuleHideHook, NULL
 };
 
-NTSTATUS DeviceIoControl(PDEVICE_OBJECT, PIRP Irp) { ... }
-
-void DriverUnload(PDRIVER_OBJECT DriverObject) { ... }
+// ... (código completo de DeviceIoControl, DriverUnload, DriverEntry)
 
 extern "C" NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath) { ... }

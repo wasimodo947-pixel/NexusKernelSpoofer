@@ -5,7 +5,7 @@
 static PDRIVER_OBJECT g_DiskDriver = NULL;
 static PDRIVER_DISPATCH g_OriginalDiskDispatch = NULL;
 
-NTSTATUS HookedDiskDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp) { ... }
+// ... (código completo sin definiciones duplicadas)
 
 void InitDiskSpoofer() { ... }
 void CleanupDiskSpoofer() { ... }

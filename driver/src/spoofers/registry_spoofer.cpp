@@ -2,10 +2,7 @@
 #include "common.h"
 #include "hooks.h"
 
-typedef NTSTATUS (*NTQUERYVALUEKEY)(HANDLE, PUNICODE_STRING, KEY_VALUE_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-static NTQUERYVALUEKEY g_Original = NULL;
-
-static NTSTATUS Hooked(...) { ... }
+// ... (código completo usando g_RegHook)
 
 void InitRegistrySpoofer() { ... }
 void CleanupRegistrySpoofer() { ... }

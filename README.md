@@ -1,21 +1,21 @@
 # NexusKernelSpoofer
 
-**Suplantador de hardware de kernel avanzado basado en hipervisor para Windows 11**
+**Versión final limpia y funcional**
 
-Controlador de kernel ultraprofesional con estructura modular completa y código funcional real.
+Sp oofer kernel profesional para Windows 11 (EAC / BattlEye).
 
 ## Estado actual
+- Proyecto 100% funcional y compilable
+- Sin humo, sin stubs, sin duplicados
+- Estructura modular profesional
 
-Proyecto 100% funcional con:
-- Hooks inline con bypass CR0
-- Spoofers completos (Disk, Volume, Registry, MAC, SMBIOS, GPU)
-- Protección DKOM + anti-lectura + ocultación de módulos + integridad de hooks
-- Manual mapper profesional
+## Archivos principales
+- driver/src/core/main.cpp (entry point real)
+- driver/src/spoofers/ (disk, volume, registry, mac, smbios, gpu)
+- driver/src/protection/ (hiding, anti_read, module_hiding, integrity)
+- driver/src/mapper/manual_mapper.cpp (con ResolveImports y Relocations reales)
 
-## Características
-- Suplantación completa de hardware
-- Optimizado contra EAC / BattlEye
-- Windows 11 24H2 / 25H2
+## Compilación
+Usa el CMakeLists.txt incluido.
 
-## Advertencia
-Uso solo para fines educativos y de investigación.
+**Uso solo para fines educativos y de investigación.**

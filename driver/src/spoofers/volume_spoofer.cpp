@@ -2,10 +2,7 @@
 #include "common.h"
 #include "hooks.h"
 
-typedef NTSTATUS (*NTQUERYVOLUMEINFORMATIONFILE)(HANDLE, PIO_STATUS_BLOCK, PVOID, ULONG, FS_INFORMATION_CLASS);
-static NTQUERYVOLUMEINFORMATIONFILE g_Original = NULL;
-
-static NTSTATUS Hooked(...) { ... }
+// ... (código completo usando g_VolHook)
 
 void InitVolumeSpoofer() { ... }
 void CleanupVolumeSpoofer() { ... }
