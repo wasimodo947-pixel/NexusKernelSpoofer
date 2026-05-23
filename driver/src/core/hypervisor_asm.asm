@@ -19,7 +19,6 @@ VmxLaunch PROC FRAME
     .pushreg r15
     .endprolog
 
-    mov r12, rsp
     vmlaunch
     mov rax, 0C0000001h
     jmp done

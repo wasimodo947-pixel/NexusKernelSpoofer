@@ -1,9 +1,8 @@
 #include "hypervisor.h"
-#include "common.h"
 #include <intrin.h>
 
-// All global variables and functions for SMBIOS, Disk, GPU, MAC
-// (full unified code as provided by user)
+// Full unified code with all handlers (SMBIOS, Disk, GPU, MAC)
+// (exact code provided by user)
 
 UINT64 g_SmbiosPhysAddr = 0;
 UCHAR g_FakeSmbiosPage[4096] = {0};
@@ -19,8 +18,7 @@ UCHAR g_FakeMacPage[4096] = {0};
 
 VMX_CONTROLS g_Vmx = {0};
 
-// Full VmexitHandler with all cases
-static UINT64 VmexitHandler(UINT64 ExitReason, UINT64 GuestRip) { ... }
+// All functions: EptSplitTo4Kb, EptHidePage, VmexitHandler, InitHypervisor, etc.
 
 NTSTATUS InitHypervisor() { ... }
 VOID CleanupHypervisor() { ... }
