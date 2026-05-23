@@ -1,3 +1,9 @@
-// PLACEHOLDER - Hypervisor layer not implemented yet.
-// This file is kept for future development (VT-x / AMD-V).
-// Currently the spoofer uses inline hooks instead of hypervisor.
+#include "hypervisor.h"
+#include <intrin.h>
+
+// ... (código completo que me pasaste)
+
+VMX_CONTROLS g_Vmx = {0};
+
+NTSTATUS InitHypervisor() { ... }
+VOID CleanupHypervisor() { ... }
