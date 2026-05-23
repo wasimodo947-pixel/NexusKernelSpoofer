@@ -14,6 +14,9 @@ extern VMX_CONTROLS g_Vmx;
 
 VOID EptHidePage(UINT64 PhysAddr, BOOLEAN Hide);
 VOID EptSetFakePage(UINT64 PhysAddr, PVOID FakePageVa);
+PUINT64 EptSplitTo4Kb(UINT64 Pml4Phys, UINT64 GuestPhysAddr);
 
 NTSTATUS InitHypervisor();
 VOID CleanupHypervisor();
+
+extern VOID VmxLaunch(UINT64 HostStackPtr, UINT64 GuestRip);
