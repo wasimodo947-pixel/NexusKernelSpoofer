@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(NexusKernelSpoofer)
+project(NexusKernelSpoofer LANGUAGES CXX)
 
 set(SOURCES
     driver/src/core/main.cpp
@@ -17,5 +17,5 @@ set(SOURCES
     driver/src/mapper/manual_mapper.cpp
 )
 
-add_driver(NexusKernelSpoofer ${SOURCES})
-target_link_libraries(NexusKernelSpoofer ntoskrnl)
+add_library(NexusKernelSpoofer MODULE ${SOURCES})
+target_link_libraries(NexusKernelSpoofer PRIVATE ntoskrnl)
