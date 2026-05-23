@@ -5,10 +5,7 @@
 static PDRIVER_OBJECT g_DiskDriver = NULL;
 static PDRIVER_DISPATCH g_OriginalDiskDispatch = NULL;
 
-NTSTATUS HookedDiskDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp) {
-    if (!g_SpoofData.Enabled) return g_OriginalDiskDispatch(DeviceObject, Irp);
-    // ... (código sin definir HOOK_INFO aquí)
-}
+NTSTATUS HookedDiskDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp) { ... }
 
 void InitDiskSpoofer() { ... }
 void CleanupDiskSpoofer() { ... }
