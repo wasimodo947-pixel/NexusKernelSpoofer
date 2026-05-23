@@ -1,5 +1,4 @@
 #pragma once
-#include "common.h"
 
-VOID InitTpmSpoofer();
-VOID CleanupTpmSpoofer();
+void InitTpmSpoofer();
+void CleanupTpmSpoofer();
