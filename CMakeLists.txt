@@ -8,6 +8,7 @@ set(SOURCES
     driver/src/core/hypervisor_asm.asm
     driver/src/core/comm_channel.cpp
     driver/src/core/dynamic_ept.cpp
+    driver/src/core/adaptive_spoofer.cpp
 
     driver/src/spoofers/disk_spoofer.cpp
     driver/src/spoofers/volume_spoofer.cpp
@@ -15,6 +16,7 @@ set(SOURCES
     driver/src/spoofers/mac_spoofer.cpp
     driver/src/spoofers/smbios_spoofer.cpp
     driver/src/spoofers/gpu_spoofer.cpp
+    driver/src/spoofers/tpm_spoofer.cpp
 
     driver/src/protection/hiding.cpp
     driver/src/protection/anti_read.cpp
